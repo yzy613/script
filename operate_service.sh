@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# Latest edit : 2020/01/22
+# Latest edit : 2020/07/31
 # Code by yzy
 
 USERNAME='root'
-BIN_PATH='/opt/minecraft/1.15.2'
+BIN_PATH='/opt/minecraft-java/1.16.1'
 BOOT_FILE='server.jar'
 NAME='Minecraft-Java'
-MAX_MEM='2048M'
+MAX_MEM='1536M'
 MIN_MEM='1024M'
 LOG="$BIN_PATH/logs/record_status.log"
 
@@ -83,6 +83,12 @@ status() {
 	fi
 }
 
+cleanItem() {
+	if pgrep -u $USERNAME -f $NAME > /dev/null ; then
+		screen -S $NAME -X eval 'stuff "kill @e[type=minecraft:item]"\015'
+	fi
+}
+
 case "$1" in
 	start)
 		start
@@ -98,6 +104,9 @@ case "$1" in
 		;;
 	direct)
 		direct
+		;;
+	cleanItem)
+		cleanItem
 		;;
 	*)
 		echo "Usage: $0 [start/stop/restart/status/direct]"
