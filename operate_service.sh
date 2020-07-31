@@ -109,5 +109,5 @@ case "$1" in
 		cleanItem
 		;;
 	*)
-		echo "Usage: $0 [start/stop/restart/status/direct]"
+		echo "Usage: $0 [start/stop/restart/status/direct/cleanItem]"
 esac
