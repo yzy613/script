@@ -16,7 +16,17 @@
 ./operate_service.sh stop
 ```
 
+- 显示服务器状态
+```bash
+./operate_service.sh status
+```
+
 - 重启服务器
 ```bash
 ./operate_service.sh restart
+```
+
+- 清除服务器掉落物品
+```bash
+./operate_service.sh cleanItem
 ```
