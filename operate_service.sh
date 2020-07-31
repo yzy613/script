@@ -59,7 +59,7 @@ stop() {
 restart() {
 	if pgrep -u $USERNAME -f $NAME > /dev/null ; then
 		#screen -S $NAME -X quit
-	screen -S $NAME -X eval 'stuff "stop"\015'
+		screen -S $NAME -X eval 'stuff "stop"\015'
 	fi
 
 	echo "Please wait $WAITING_TIME seconds for restarting"
