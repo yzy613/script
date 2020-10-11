@@ -85,7 +85,7 @@ status() {
 
 cleanItem() {
 	if pgrep -u $USERNAME -f $NAME > /dev/null ; then
-		screen -S $NAME -X eval 'stuff "Will clean up the fallen objects"\015'
+		screen -S $NAME -X eval 'stuff "say Will clean up the fallen objects"\015'
 		sleep $WAITING_TIME
 		screen -S $NAME -X eval 'stuff "kill @e[type=minecraft:item]"\015'
 	fi
