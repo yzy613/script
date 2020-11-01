@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Latest edit : 2020/10/11
-# Code by yzy
-
 USERNAME='root'
 BIN_PATH='/opt/minecraft-java/1.16.3'
 BOOT_FILE='server.jar'
