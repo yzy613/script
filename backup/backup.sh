@@ -10,6 +10,10 @@ TARGET='mc'
 PREFIX='mc'
 SUFFIX='tar.gz'
 
+if [ ! -d "$OUTPUT_PATH" ]; then
+    mkdir "$OUTPUT_PATH"
+fi
+
 tar -I pigz -cf $OUTPUT_PATH/$PREFIX.$(date +%Y%m%d-%H%M).$SUFFIX -C $BACKUP_PATH $TARGET
 echo $(date +%Y/%m/%d-%H:%M) $PREFIX backup completed >> $WORKING_PATH/backup.log
 
