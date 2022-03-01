@@ -14,7 +14,8 @@ if [ ! -d "$OUTPUT_PATH" ]; then
     mkdir "$OUTPUT_PATH"
 fi
 
-tar -I pigz -cf $OUTPUT_PATH/$PREFIX.$(date +%Y%m%d-%H%M).$SUFFIX -C $BACKUP_PATH $TARGET
+#tar -I pigz -cf $OUTPUT_PATH/$PREFIX.$(date +%Y%m%d-%H%M).$SUFFIX -C $BACKUP_PATH $TARGET
+tar -C $BACKUP_PATH -c $TARGET | pigz > $OUTPUT_PATH/$PREFIX.$(date +%Y%m%d-%H%M).$SUFFIX
 echo $(date +%Y/%m/%d-%H:%M) $PREFIX backup completed >> $WORKING_PATH/backup.log
 
 find $OUTPUT_PATH -mtime +2 -name "*.$SUFFIX" -exec rm -f {} \;
