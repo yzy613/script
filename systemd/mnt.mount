@@ -1,0 +1,13 @@
+[Unit]
+Description=Mount disk
+#Before=smbd.service
+
+[Mount]
+What=/dev/sdb1
+Where=/mnt
+Type=ext4
+Options=defaults
+#LazyUnmount=yes
+
+[Install]
+WantedBy=local-fs.target
