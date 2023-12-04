@@ -22,15 +22,21 @@ fi
 # 创建存放重复文件的子目录
 mkdir -p "$directory/duplicate"
 
+# 文件计数
+count=0
 # 遍历目录中的所有文件，正确处理空格和特殊字符
 # 排除 duplicate 目录
 find "$directory" -type f -not -path "$directory/duplicate/*" -print0 | while IFS= read -r -d '' file; do
     # 计算文件的 SHA1 哈希值
     sha1=$(sha1sum "$file" | awk '{ print $1 }')
 
+    # 显示进度
+    ((count++))
+    printf "\r$count"
+
     # 检查哈希值是否已存在
     if [[ -n "${filehashes[$sha1]}" ]]; then
-        echo "Duplicate file found: $file (Original: ${filehashes[$sha1]})"
+        printf "\rDuplicate file found: $file (Original: ${filehashes[$sha1]})\n"
         # 将重复文件移动到指定子目录
         mv "$file" "$directory/duplicate/"
     else
@@ -38,3 +44,5 @@ find "$directory" -type f -not -path "$directory/duplicate/*" -print0 | while IF
         filehashes[$sha1]="$file"
     fi
 done
+
+printf "\n"
